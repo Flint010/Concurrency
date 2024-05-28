@@ -5,7 +5,7 @@ add_executable(guarded
 )
 
 add_executable(guarded_tests TestGuarded/test.cpp)
-target_link_libraries(guarded_tests gtest gtest_main)
+target_link_libraries(guarded_tests GTest::GTest)
 
 add_test(
 	NAME guarded_tests

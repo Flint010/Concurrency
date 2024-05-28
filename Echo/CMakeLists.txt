@@ -28,7 +28,7 @@ add_executable(echo_tests Tests/test.cpp)
 target_link_libraries(echo_tests 
 				echo_lib 
 				${Boost_LIBRARIES}
-				gtest_main						
+				GTest::GTest						
 )
 add_test(echo_tests echo_tests)
 
