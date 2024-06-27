@@ -24,6 +24,9 @@ add_subdirectory(Deadlock)
 
 add_subdirectory(Dining_philosopfers)
 
+add_subdirectory(LockFreeStack)
+
+
 add_subdirectory(Echo)
 
 add_subdirectory(Guarded)
