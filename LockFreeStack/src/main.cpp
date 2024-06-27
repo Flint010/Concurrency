@@ -1,8 +1,5 @@
 #include <iostream>
 #include "lock_free_stack.hpp"
-#include <memory>
-#include <vector>
-#include <thread>
 
 struct A {
     int i = 5;
@@ -30,31 +27,6 @@ int main() {
     A a;
 
     stack.Push(A());
-
-
-    std::thread t1([&](){
-        if (!stack.TryPop()) {
-            std::cout << "!\n";
-        }
-    });
-    std::thread t2([&](){
-        if (!stack.TryPop()) {
-            std::cout << "@\n";
-        }
-    });
-    std::thread t3([&](){
-        if (!stack.TryPop()) {
-            std::cout << "#\n";
-        }
-    });
-
-    t1.join();
-    t2.join();
-    t3.join();
-
-    
-
-    
 
     stack.Push(a);
     a.i++;

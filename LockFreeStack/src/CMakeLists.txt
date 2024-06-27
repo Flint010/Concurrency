@@ -9,8 +9,8 @@ add_executable(stack
                 lock_free_stack.hpp
 )
 
-target_compile_options(stack PRIVATE -g -fsanitize=leak -fsanitize=address)# -fsanitize=leak
-target_link_options(stack PRIVATE -g -fsanitize=leak  -fsanitize=address) 
+# target_compile_options(stack PRIVATE -g -fsanitize=leak -fsanitize=address) 
+# target_link_options(stack PRIVATE -g -fsanitize=leak  -fsanitize=address) 
 
 
 # target_link_libraries(stack ${Boost_LIBRARIES})
