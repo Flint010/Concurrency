@@ -9,7 +9,7 @@ Reference counting is used for memory menagment.
 The reference count of the top of the stack is divided into positive and negative parts:
 
 - The negative component is stored inside the node
-- Positive - right at the pointer to the top of the stack
+- Positive - right in the pointer to the top of the stack
 
 ### `AtomicStampedPtr`
 
