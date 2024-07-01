@@ -21,7 +21,7 @@ AtomicStampedPtr<T> asp({nullptr, 0});
 
 asp.Store({raw_ptr, 7});
 auto stamped_ptr = asp.Load();
-// Method `IncrementCount` returnы new `StampedPtr`, 
+// Method `IncrementCount` return new `StampedPtr`, 
 // in which the counter is incremented by one
 bool succeeded = asp.CompareExchangeWeak(stamped_ptr, stamped_ptr.IncrementCount());
 ```
