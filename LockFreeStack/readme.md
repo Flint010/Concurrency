@@ -1,29 +1,28 @@
 # Treiber Stack
 
-[лок-фри стек Трайбера](https://en.wikipedia.org/wiki/Treiber_stack).
+[Lock-Free Treiber Stack](https://en.wikipedia.org/wiki/Treiber_stack).
 
-## Управление памятью
+## Memory management
 
-Для управления памятью используется подсчет ссылок.
+Reference counting is used for memory menagment.
 
-Счетчик ссылок вершины стека разделите на положительную и отрицательную компоненты:
+The reference count of the top of the stack is divided into positive and negative parts:
 
-- Отрицательную компоненту храните внутри узла
-- Положительную – прямо на указателе на вершину стека
+- The negative component is stored inside the node
+- Positive - right at the pointer to the top of the stack
 
 ### `AtomicStampedPtr`
 
-Класс [`AtomicStampedPtr<T>`](atomic_stamped_ptr.hpp), хранит указатель + 16-битный счетчик в виде одного машинного слова и умеет
-выполнять над этой парой стандартные атомарные операции:
+Class [`AtomicStampedPtr<T>`](atomic_stamped_ptr.hpp), stores a pointer + 16-bit counter in the form of one machine word 
+and can perform standard atomic operations on this pair:
 
 ```cpp
 AtomicStampedPtr<T> asp({nullptr, 0});
 
 asp.Store({raw_ptr, 7});
 auto stamped_ptr = asp.Load();
-// Метод `IncrementCount` возвращает новый `StampedPtr`, 
-// в котором счетчик увеличен на единицу
+// Method `IncrementCount` returnы new `StampedPtr`, 
+// in which the counter is incremented by one
 bool succeeded = asp.CompareExchangeWeak(stamped_ptr, stamped_ptr.IncrementCount());
 ```
-
-Счетчик в `AtomicStampedPtr` самостоятельного смысла не имеет.
+The counter in `AtomicStampedPtr` has no independent meaning.
